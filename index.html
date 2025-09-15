@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ezekiel Boumengue-- Portfolio Personnel</title>
+  <meta name="description" content="Portfolio personnel d'Ezekiel Smith : biographie, personnalité, galerie d'images et contact." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --gold:#d4af37;           /* or #ffd700 */
+      --gold-2:#f5d76e;
+      --silver:#c0c0c0;
+      --silver-2:#e5e5e5;
+      --ink:#0f1221;
+      --ink-2:#151936;
+      --muted:#8a8fa3;
+      --bg:#29042E;
+      --card:#29042E;
+      --radius:18px;
+      --shadow:0 10px 30px rgba(0,0,0,.25);
+    }
+  @media (max-width: 600px) {
+  .fab { right: 12px; bottom: 12px; }
+  .toc-panel { width: 95%; }
+}
+  .logo {
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(212,175,55,0.6), 0 0 20px rgba(192,192,192,0.5);
+}
+  #type {
+  display: inline-block;
+  min-width: 13ch; /* ajuste selon le mot le plus long */
+  text-align: left;
+}
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:#f6f7fb;font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Noto Sans","Apple Color Emoji","Segoe UI Emoji"}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container {
+  width: 92%;       /* largeur max = 92% de l'écran */
+  max-width: 1100px; /* mais pas plus de 1100px */
+  margin-inline: auto;
+}
+
+    /* Header */
+    header{
+      position:sticky;top:0;z-index:50;
+      backdrop-filter:saturate(1.2) blur(10px);
+      background:linear-gradient(90deg, rgba(10,12,24,.85), rgba(10,12,24,.65));
+      border-bottom:1px solid rgba(255,255,255,.06)
+    }
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.5px}
+    .logo{width:36px;height:36px;border-radius:50%;
+      background:conic-gradient(from 120deg,var(--gold),var(--silver),var(--gold));
+      box-shadow:inset 0 0 8px rgba(255,255,255,.2), 0 0 12px rgba(212,175,55,.25)}
+    nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0}
+    nav a{padding:8px 12px;border-radius:999px;opacity:.85}
+    nav a:hover, nav a.active{background:linear-gradient(90deg,rgba(212,175,55,.18),rgba(192,192,192,.18));opacity:1}
+    .cta{display:flex;gap:10px}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:999px;font-weight:600;border:1px solid rgba(255,255,255,.08);box-shadow:var(--shadow)}
+    .btn.gold{background:linear-gradient(120deg,var(--gold),var(--gold-2));color:#1a1200}
+    .btn.ghost{background:rgba(255,255,255,.05)}
+
+    /* Hero */
+    .hero{
+      position:relative;overflow:hidden;isolation:isolate
+    }
+    .hero::before{ /* animated gradient */
+      content:"";position:absolute;inset:-40%;z-index:-1;
+      background: radial-gradient(60% 60% at 20% 20%, rgba(212,175,55,.35), transparent 60%),
+                  radial-gradient(60% 60% at 80% 30%, rgba(192,192,192,.35), transparent 60%),
+                  radial-gradient(60% 60% at 50% 80%, rgba(212,175,55,.25), transparent 60%);
+      filter: blur(40px);
+      animation: float 18s linear infinite alternate;
+    }
+    @keyframes float{from{transform:translateY(-10px)}to{transform:translateY(20px)}}
+    .hero-inner{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center;min-height:78vh;padding:36px 0}
+    .badge{display:inline-flex;gap:8px;align-items:center;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);font-size:.9rem}
+    .title{font-size:clamp(2.1rem,6vw,4rem);line-height:1.05;margin:10px 0 8px;font-weight:800}
+    .title span.grad{background:linear-gradient(90deg,var(--gold),var(--silver));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .subtitle{font-size:clamp(1rem,2.2vw,1.2rem);color:var(--muted)}
+    .hero-actions{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
+    .pfp{aspect-ratio:1/1;border-radius:24px;background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);padding:14px}
+    .pfp img{width:100%;height:100%;object-fit:cover;border-radius:18px}
+    .note{font-size:.9rem;color:var(--muted);margin-top:8px}
+
+    /* Sections */
+    section{padding:64px 0}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
+    h2{font-size:clamp(1.6rem,3.5vw,2.2rem);margin:0 0 14px}
+    .kicker{color:var(--muted);font-weight:600;letter-spacing:.1em;text-transform:uppercase;font-size:.85rem}
+
+    /* Biography grid */
+    .bio-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .bio-grid .card p{margin:0;line-height:1.8}
+
+    /* Personality chips */
+    .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+    .chip{padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);font-weight:600}
+
+    /* Timeline */
+    .timeline{position:relative;margin-top:16px}
+    .timeline::before{content:"";position:absolute;left:10px;top:0;bottom:0;width:2px;background:linear-gradient(var(--silver),var(--gold))}
+    .t-item{display:grid;grid-template-columns:28px 1fr;gap:12px;margin:14px 0}
+    .dot{width:22px;height:22px;border-radius:50%;background:linear-gradient(120deg,var(--gold),var(--silver));box-shadow:0 0 0 3px rgba(255,255,255,.06)}
+    .t-item h4{margin:0}
+    .t-item p{margin:4px 0 0;color:var(--silver-2)}
+
+    /* Gallery */
+    .masonry{columns:1;column-gap:14px}
+    .shot{break-inside:avoid;margin-bottom:14px;border-radius:16px;overflow:hidden;border:1px solid rgb(255, 255, 255);position:relative}
+    .shot img{transition:transform .5s ease}
+    .shot:hover img{transform:scale(1.04)}
+    .shot .cap{position:absolute;inset:auto 0 0 0;padding:10px 12px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.7));font-size:.9rem}
+
+    /* Lightbox */
+    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;padding:24px;z-index:70}
+    .lightbox.open{display:flex}
+    .lightbox img{max-width:95vw;max-height:85vh;border-radius:16px;border:1px solid gold}
+
+    /* Contact */
+    .socials{display:flex;gap:12px;flex-wrap:wrap}
+    .icon-btn{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);font-weight:600}
+    .icon-btn:hover{background:linear-gradient(120deg,rgba(212,175,55,.18),rgba(192,192,192,.18))}
+
+    /* Footer */
+    footer{padding:28px 0;color:var(--muted);border-top:1px solid rgba(255,255,255,.06)}
+
+    /* Sommaire floating */
+    /* Bouton Sommaire flottant */
+.fab {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 60;
+  max-width: 10vw; /* limite la taille sur petits écrans */
+}
+
+/* Panneau du Sommaire */
+.toc-panel {
+  width: 90%;           /* s'adapte à l'écran */
+  max-width: 380px;     /* mais pas trop large sur grand écran */
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+}
+    .fab button{width:56px;height:56px;border-radius:50%;border:none;cursor:pointer;box-shadow:var(--shadow);
+      background:conic-gradient(from 180deg,var(--gold),var(--silver),var(--gold));}
+    .fab svg{width:28px;height:28px;filter:drop-shadow(0 2px 4px rgba(0,0,0,.4))}
+    /* Arrière-plan du sommaire */
+.toc {
+  position: fixed;
+  inset: 0;
+  z-index: 65;
+  background: rgba(0,0,0,.45);
+  backdrop-filter: blur(6px);
+
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease;
+}
+
+/* Quand le sommaire est ouvert */
+.toc.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Panneau latéral */
+.toc-panel {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: min(380px,92%);
+  background: var(--card);
+  border-left: 1px solid rgba(255,255,255,.08);
+  padding: 20px 18px;
+  overflow: auto;
+
+  transform: translateX(100%);
+  transition: transform 0.4s ease;
+}
+
+/* Panneau visible */
+.toc.open .toc-panel {
+  transform: translateX(0);
+}
+
+    .toc.open{display:block}
+    .toc-panel{position:absolute;right:0;top:0;bottom:0;width:min(380px,92%);background:var(--card);border-left:1px solid rgba(255,255,255,.08);padding:20px 18px;overflow:auto}
+    .toc a{display:flex;align-items:center;gap:10px;padding:10px;border-radius:12px;color:#fff;border:1px solid transparent}
+    .toc a:hover{border-color:rgba(255,255,255,.12);background:rgba(255,255,255,.04)}
+
+    /* Reveal on scroll */
+    .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease, transform .7s ease}
+    .reveal.visible{opacity:1;transform:none}
+
+    /* Responsive */
+    @media (max-width: 900px){
+      .hero-inner{grid-template-columns:1fr;min-height:unset}
+      .bio-grid{grid-template-columns:1fr}
+      nav ul{display:none}
+    }
+    @media (min-width: 576px){ .masonry{columns:2} }
+    @media (min-width: 992px){ .masonry{columns:3} }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      .hero::before{animation:none}
+      .reveal{transition:none}
+      .shot img{transition:none}
+    }
+  
+  /* ton CSS existant... */
+
+  /* Style du bouton Fermer du Sommaire */
+  #closeToc {
+    background: linear-gradient(120deg, var(--gold), var(--gold-2));
+    color: #1a1200;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    box-shadow: var(--shadow);
+  }
+
+  #closeToc:hover {
+    opacity: 0.9;
+  }
+  /* Tous les boutons */
+.btn, .icon-btn, #closeToc, #openToc {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+.btn:hover, .icon-btn:hover, #openToc:hover, #closeToc:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 24px rgba(212,175,55,.4);
+}
+
+.btn:active, .icon-btn:active, #openToc:active, #closeToc:active {
+  transform: scale(0.97);
+  opacity: 0.9;
+}
+  /* Cards & galerie hover */
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(212,175,55,.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.shot:hover img {
+  transform: scale(1.06) rotate(-0.5deg);
+  box-shadow: 0 8px 16px rgba(212,175,55,.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+  /* Rotation du bouton Sommaire lorsqu'il est ouvert */
+#openToc.opened {
+  transform: rotate(90deg);
+  transition: transform 0.4s ease;
+}
+  /* Hero title & subtitle animation */
+.hero-inner > div > .title,
+.hero-inner > div > .subtitle,
+.hero-inner > div > .badge,
+.hero-actions {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: heroFade 0.8s ease forwards;
+}
+
+.hero-inner > div > .badge { animation-delay: 0.2s; }
+.hero-inner > div > .title { animation-delay: 0.4s; }
+.hero-inner > div > .subtitle { animation-delay: 0.6s; }
+.hero-actions { animation-delay: 0.8s; }
+
+@keyframes heroFade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+  .shot img:hover {
+  transform: scale(1.07) rotate(-1deg);
+  box-shadow: 0 10px 25px rgba(212,175,55,0.3);
+}
+  .kicker, h2 {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.kicker.visible, h2.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+  .toc-panel {
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+}
+.toc.open .toc-panel {
+  transform: translateX(0);
+}
+  
+.t-item div {
+  transition: transform 0.4s ease;
+  transform-style: preserve-3d;
+}
+.t-item div:hover {
+  transform: rotateY(10deg) translateY(-4px);
+}
+  .lightbox img {
+  border: 2px solid var(--gold);
+  box-shadow: 0 0 20px var(--gold);
+  transition: box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.lightbox.open img {
+  box-shadow: 0 0 30px var(--silver);
+  border-color: var(--silver);
+}
+  .rainbow-text {
+  background: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet);
+  background-size: 600% 100%;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: rainbow 6s linear infinite;
+}
+
+@keyframes rainbow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+  footer {
+  animation: footerGlow 6s ease-in-out infinite alternate;
+}
+
+@keyframes footerGlow {
+  0% { color: var(--muted); }
+  50% { color: var(--gold); }
+  100% { color: var(--muted); }
+}
+  .icon-btn.instagram svg path {
+  /* Gradient animé */
+  fill: url(#rainbowGradient);
+  transition: fill 0.3s ease;
+}
+
+/* Animation du gradient */
+@keyframes rainbowShift {
+  0% { stop-color: red; }
+  16% { stop-color: orange; }
+  33% { stop-color: yellow; }
+  50% { stop-color: green; }
+  66% { stop-color: blue; }
+  83% { stop-color: indigo; }
+  100% { stop-color: rgb(169, 0, 169); }
+}
+  .mass {
+  font-weight: bold;
+  font-size: 0.9rem; /* ajuste selon ton design */
+  background: linear-gradient(90deg, rgb(255, 255, 255), rgb(255, 255, 255), gold, rgb(226, 226, 226), rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255));
+  background-size: 400% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbowMove 6s linear infinite;
+}
+    .citation {
+  font-weight: bold;
+  font-size: 0.9rem; /* ajuste selon ton design */
+  background: linear-gradient(90deg, red, orange, yellow, green, cyan, rgb(0, 0, 255), rgb(169, 0, 169));
+  background-size: 400% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbowMove 6s linear infinite;
+}
+
+@keyframes rainbowMove {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+  </style>
+</head>
+<body>
+      <header>
+    <div class="container nav">
+      <div class="brand" style="display:flex; flex-direction:column; align-items:flex-start;">
+  <div style="display:flex; align-items:center; gap:10px;">
+    <svg class="logo" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 100 100">
+      <defs>
+        <linearGradient id="gold-silver" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#d4af37"/>
+          <stop offset="50%" stop-color="#c0c0c0"/>
+          <stop offset="100%" stop-color="#d4af37"/>
+        </linearGradient>
+      </defs>
+      <circle cx="50" cy="50" r="45" fill="url(#gold-silver)" stroke="#fff" stroke-width="4"/>
+    </svg>
+    <span style="font-weight:800;">Ezekiel&nbsp;Boumengue</span>
+  </div>
+  <small style="font-size:0.8rem; color:var(--muted); margin-left:50px;">Personnalité publique ★</small>
+</div>
+
+      <nav aria-label="Navigation principale">
+        <ul>
+          <li><a class="active" href="#home">Accueil</a></li>
+          <li><a href="#bio">Biographie</a></li>
+          <li><a href="#personnalite">Personnalité</a></li>
+          <li><a href="#galerie">Galerie</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="cta">
+        <a class="btn ghost" href="#galerie" aria-label="Aller à la galerie">Galerie</a>
+        <a class="btn gold" href="#contact" aria-label="Aller à la page de contact">Me contacter</a>
+      </div>
+    </div>
+  </header>
+
+
+  <main>
+    <!-- Hero / Page de garde -->
+    <section id="home" class="hero">
+      <div class="container hero-inner">
+        <div>
+          <div class="badge"><h1 class="mass">Bienvenue sur mon site personnel</h1></div>
+          <h1 class="title">Je suis <span class="grad">Ezekiel&nbsp;Boumengue</span><br><span id="type"></span></h1>
+          <p class="subtitle">Passionné par la création, l'apprentissage continu et les projets qui ont du sens. Ici, tu trouveras mon histoire, ma vision et quelques moments qui me représentent.</p>
+          <div class="hero-actions">
+            <a class="btn gold" href="#bio">Découvrir mon parcours</a>
+            <a class="btn ghost" href="#personnalite">Ma personnalité</a>
+          </div>
+          <p class="note">Astuce : fais défiler pour explorer ou ouvre le <strong>Sommaire</strong>😊</p>
+        </div>
+        <div class="pfp reveal">
+          <!-- Remplace cette image par ta photo: place ton fichier dans /images/portrait.jpg -->
+          <img src="https://i.imgur.com/rPjVeVz.jpeg"/>
+        </div>
+      </div>
+    </section>
+
+    <!-- Biographie -->
+    <section id="bio" class="container">
+      <p class="kicker reveal">Biographie</p>
+      <h2 class="reveal">Mon histoire en quelques lignes</h2>
+      <div class="bio-grid">
+        <article class="card reveal">
+          <h3>Origines & parcours</h3>
+          <p>
+            Né et grandi dans la province de l'Ogooué-lolo dans la ville de <em> Pana</em> et de nationalité Gabonaise, Je m'appelle <strong>Boumengue Massala Ezekiel</strong>, j'ai 20 ans et je suis en classe de 2e année universitaire à l'école d'architecture. Pour ce qui concerne mon parcours scolaire j'ai eu mon BEPC (brevet d'étude primaire en 2020 après la crise de COVID-19 avant de poursuive mes études série scientifique, ce qui m'a très vite permis de décrocher mon baccalauréat scientifique (bac c). Après cela Je me suis alors retrouvé en école d'architecture (ce que je n'avais jamais voulu et imaginer d'ailleurs). Ma première année dans cette nouvelle école a vraiment été une expérience immersive pour moi car j'ai appris beaucoup de nouvelles choses, j'ai eu une nouvelle vision du monde extérieur après de nombreuse remises en question. Une expérience qui m'a permis également d'avoir une vision assez sélective. 
+            
+          </p>
+        </article>
+        <article class="card reveal">
+          <h3>Ce qui m'anime</h3>
+          <p>
+            J'aime apprendre, partager et construire. Mes centres d'intérêt gravitent autour de la technologie, du design, de l'architecture, de la photographie, des sciences,et des jeux videos.
+            Mon objectif : créer des solutions utiles, belles et accessibles.
+          </p>
+        </article>
+        <article class="card reveal">
+          <h3>Repères clés</h3>
+          <div class="timeline">
+            <div class="t-item"><div class="dot"></div><div><h4>2024 -- Aujourd'hui</h4><p>Nouveau mode de vie, nouvelle sensibilité et nouvelle étude: L'architecture🏛💕 </p></div></div>
+            <div class="t-item"><div class=" dot"></div><div><h4>2021 -- 2024</h4><p>Specialisation dans les sciences exactes, et étude de la litterature.</p></div></div>
+            <div class="t-item"><div class="dot"></div><div><h4>2017 -- 2021</h4><p>Découverte de la passion pour les sciences telles que les sciences de le vie et de la terre, la science physique, la chimie et bien-sûr les mathematiques🩷.</p></div></div>
+          </div>
+        </article>
+        <article class="card reveal">
+          <h3>Valeurs</h3>
+          <p>Ce qui guide mes décisions et mes collaborations au quotidien.</p>
+          <div class="chips">
+            <span class="chip">Intégrité</span>
+            <span class="chip">Créativité</span>
+            <span class="chip">Excellence</span>
+            <span class="chip">Bienveillance</span>
+            <span class="chip">Persévérance</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Personnalité -->
+    <section id="personnalite" class="container">
+      <p class="kicker reveal">Personnalité</p>
+      <h2 class="reveal">Qui je suis au quotidien</h2>
+      <div class="card reveal">
+        <p style="margin:0 0 12px">Quelques traits qui me définissent et comment ils se traduit dans mes projets :</p>
+        <ul style="margin:0 0 6px 20px;line-height:1.9">
+          <li><strong>Curieux :</strong> j'aime explorer de nouvelles idées et découvrir de nouvelles informations.</li>
+          <li><strong>Ambiverti :</strong> Ma personnalité ne se conforme pas aux extrémités de l'introversion ou de l'extraversion, mais se situe à un point d'équilbre entre les deux.</li>
+          <li><strong>Esprit d'équipe :</strong> je valorise l'écoute, la clarté et l'entraide.</li>
+          <li><strong>Esthétique & sens du détail :</strong> j'accorde de l'importance à l'expérience utilisateur.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Galerie -->
+    <section id="galerie" class="container">
+      <p class="kicker reveal">Galerie</p>
+      <h2 class="reveal">Moments & images</h2>
+      <div class="masonry">
+        <!-- ASTUCE: remplace les URLs ci-dessous par tes propres photos. Tu peux dupliquer les blocs .shot -->
+        <figure class="shot reveal"><img src="https://i.imgur.com/JEnyBQm.jpeg" alt="Photo 1"><figcaption class="cap">Photo 1 -- Ezekiel Smith</figcaption></figure>
+        <figure class="shot reveal"><img src="https://i.imgur.com/LXSnyhq.jpeg" alt="Photo 2"><figcaption class="cap">Photo 2 -- Titre</figcaption></figure>
+        <figure class="shot reveal"><img src="https://i.imgur.com/Z9UdRRL.jpeg" alt="Photo 3"><figcaption class="cap">Photo 3 -- Titre</figcaption></figure>
+        <figure class="shot reveal"><img src="https://i.imgur.com/J8yg2bo.jpeg" alt="Photo 4"><figcaption class="cap">Photo 4 -- Titre</figcaption></figure>
+        <figure class="shot reveal"><img src="https://i.imgur.com/4C7Z6Fn.jpeg" alt="Photo 5"><figcaption class="cap">Photo 5 -- Titre</figcaption></figure>
+        <figure class="shot reveal"><img src="https://i.imgur.com/CPkvNvO.jpeg" alt="Photo 6"><figcaption class="cap">Photo 6 -- Titre</figcaption></figure>
+        <figure class="shot reveal"><img src="https://i.imgur.com/s6kJd2T.jpeg" alt="Photo 7"><figcaption class="cap">Photo 7 -- Titre</figcaption></figure>
+        <figure class="shot reveal"><img src="https://i.imgur.com/Vf8v8h8.jpeg" alt="Photo 8"><figcaption class="cap">Photo 8 -- Titre</figcaption></figure>
+        <figure class="shot reveal"><img src="https://i.imgur.com/dvvw8a0.jpeg" alt="Photo 9"><figcaption class="cap">Photo 9 -- Titre</figcaption></figure>
+        <figure class="shot reveal"><img src="https://i.imgur.com/9U0ERQ5.jpeg" alt="Photo 10"><figcaption class="cap">Photo 10 -- Titre</figcaption></figure>
+        <figure class="shot reveal"><img src="https://i.imgur.com/Jeb1VY9.jpeg" alt="Photo 11"><figcaption class="cap">Photo 11 -- Titre</figcaption></figure>
+        <figure class="shot reveal"><img src="https://i.imgur.com/rPjVeVz.jpeg" alt="Photo 12"><figcaption class="cap">Photo 12 -- Titre</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- Contact -->
+<section id="contact" class="container">
+  <p class="kicker reveal">Contact</p>
+  <h2 class="reveal">Entrons en contact</h2>
+  <div class="card reveal" style="display:grid;grid-template-columns:1.2fr .8fr;gap:18px">
+    
+    <!-- Nouveau formulaire Getform -->
+ <form action="https://getform.io/f/aolzqnob" method="POST">
+  <label>Nom<br>
+    <input required name="nom" type="text" placeholder="Ton nom" 
+      style="width:100%;padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.04);color:#fff">
+  </label>
+  <br>
+  <label>Email<br>
+    <input required name="email" type="email" placeholder="ton@email.com" 
+      style="width:100%;padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.04);color:#fff">
+  </label>
+  <br>
+  <label>Message<br>
+    <textarea required name="message" rows="5" placeholder="Ton message…" 
+      style="width:100%;padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.04);color:#fff"></textarea>
+  </label>
+  <br>
+  <!-- reCAPTCHA ici, à l'intérieur du formulaire -->
+  <div class="g-recaptcha" data-sitekey="6Lcu8cYrAAAAAAXtz64vi57wBEvN0W1atT60a-Te"></div>
+  <br>
+  <button class="btn gold" type="submit">Envoyer</button>
+</form>
+
+<!-- Script reCAPTCHA juste avant </body> -->
+
+        <div>
+          <p>Tu peux aussi me joindre sur mes réseaux :</p>
+          <div class="socials">
+            
+            <a class="icon-btn" href="mailto:boumengueezekeil@gmail.com" aria-label="Email">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 2v.511l-8 5.333-8-5.333V6h16zM4 18V9.49l7.386 4.916a1 1 0 001.228 0L20 9.49V18H4z"/></svg>
+              Email
+            </a>
+ <a class="icon-btn instagram" 
+   href="https://www.instagram.com/ezekielsmith585?igsh=aHU1dzF3MWV4cHVm" 
+   target="_blank" rel="noopener" aria-label="Instagram">
+  <!-- Instagram SVG -->
+  <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+    <defs>
+      <linearGradient id="rainbowGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="red">
+          <animate attributeName="stop-color" 
+                   values="red;orange;yellow;green;blue;indigo;violet;red" 
+                   dur="3s" repeatCount="indefinite" />
+        </stop>
+        <stop offset="100%" stop-color="violet">
+          <animate attributeName="stop-color" 
+                   values="violet;red;orange;yellow;green;blue;indigo;violet" 
+                   dur="3s" repeatCount="indefinite" />
+        </stop>
+      </linearGradient>
+    </defs>
+    <path fill="url(#rainbowGradient)" 
+          d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 
+             5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm0 
+             2h10c1.654 0 3 1.346 3 3v10c0 1.654-1.346 
+             3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 
+             1.346-3 3-3zm11 1a1 1 0 100 2 1 1 0 
+             000-2zM12 7a5 5 0 100 10 5 5 0 
+             000-10zm0 2a3 3 0 110 6 3 3 0 
+             010-6z"/>
+  </svg>
+  Instagram
+</a>
+            <a class="icon-btn whatsapp" 
+   href="https://wa.me/24176572778" 
+   target="_blank" rel="noopener" aria-label="WhatsApp">
+  <!-- WhatsApp SVG avec gradient animé -->
+  <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+    <defs>
+      <linearGradient id="whatsappGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#25D366">
+          <animate attributeName="stop-color" values="#25D366;#128C7E;#25D366" dur="1s" repeatCount="indefinite" />
+        </stop>
+        <stop offset="100%" stop-color="#128C7E">
+          <animate attributeName="stop-color" values="#128C7E;#25D366;#128C7E" dur="1s" repeatCount="indefinite" />
+        </stop>
+      </linearGradient>
+    </defs>
+    <path fill="url(#whatsappGradient)" 
+          d="M20.52 3.48A11.93 11.93 0 0012 0C5.37 0 0 5.37 0 12c0 2.12.55 4.1 1.51 5.87L0 24l6.38-1.57A11.94 11.94 0 0012 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zm-8.52 17.01a10.01 10.01 0 01-5.39-1.53l-.39-.23-3.79.93.98-3.69-.25-.39A10.01 10.01 0 012.99 12c0-5.53 4.48-10 10-10s10 4.47 10 10-4.48 10-10 10zm5.49-7.15c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15s-.77.97-.94 1.17c-.17.2-.34.22-.63.08-.28-.15-1.18-.43-2.25-1.39-.83-.74-1.39-1.66-1.55-1.93-.16-.27-.02-.41.13-.56.14-.14.3-.35.45-.52.15-.17.2-.28.3-.47.1-.19.05-.35-.02-.5-.07-.15-.67-1.62-.92-2.23-.24-.58-.49-.5-.67-.51-.17-.01-.37-.01-.57-.01s-.5.07-.76.35c-.27.28-1.03 1.01-1.03 2.47s1.06 2.87 1.21 3.07c.15.2 2.09 3.2 5.06 4.48.71.31 1.26.5 1.69.64.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.69.25-1.28.17-1.41-.08-.13-.27-.21-.57-.36z"/>
+  </svg>
+       
+  WhatsApp
+</a>
+            <div class="g-recaptcha" data-sitekey="6Lcu8cYrAAAAAAXtz64vi57wBEvN0W1atT60a-Te"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
+      <span>© <span id="year"></span> Ezekiel Smith. Tous droits réservés.</span>
+      <span>Thème doré & argent -- construit avec ❤</span>
+    </div>
+  </footer>
+
+  <!-- Floating Sommaire -->
+<div class="fab">
+  <button id="openToc" title="Sommaire" aria-label="Ouvrir le sommaire">
+    <svg viewBox="0 0 24 24" fill="#1b1300" aria-hidden="true">
+      <path d="M4 6h16v2H4V6zm0 5h16v2H4v-2zm0 5h16v2H4v-2z"/>
+    </svg>
+  </button>
+</div>
+
+<div class="toc" id="toc">
+  <div class="toc-panel">
+    <div class="brand" style="margin-bottom:8px">
+      <div class="logo"></div>
+      <strong>Sommaire</strong>
+    </div>
+
+    <a href="#home">🏠 Accueil</a>
+    <a href="#bio">📖 Biographie</a>
+    <a href="#personnalite">✨ Personnalité</a>
+    <a href="#galerie">🖼 Galerie</a>
+    <a href="#contact">✉ Contact</a>
+
+    <hr style="border-color:rgba(255,255,255,.08)">
+
+    <p style="color:var(--muted); font-size:.95rem">
+   <h1 class="citation">
+  Écoute : 
+  <span style="font-family: 'Georgia', 'Times New Roman', serif; font-style: italic;">
+    La réussite est une suite bien connue d'efforts...
+  </span>
+   </h1>   
+</p>
+
+    <button class="btn ghost" id="closeToc" style="margin-top:10px">Fermer</button>
+  </div>
+</div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Agrandissement d'image">
+    <img id="lightboxImg" alt="Aperçu" />
+  </div>
+
+  <script>
+    // Active link on scroll
+    const links=[...document.querySelectorAll('nav a')];
+    const sections=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    const highlight=()=>{
+      let idx=0;
+      const y=window.scrollY+120;
+      sections.forEach((sec,i)=>{ if(sec.offsetTop<=y) idx=i; });
+      links.forEach((l,i)=>l.classList.toggle('active', i===idx));
+    };
+    window.addEventListener('scroll', highlight); highlight();
+
+    // Typewriter / rotating words
+    const el=document.getElementById('type');
+    const words=["Smart👾", "Créatif💡", "Ambitieux🔗", "Curieux🔎", "speciale🧙"];
+    let wi=0, ci=0;
+    function type(){
+      const w=words[wi];
+      el.textContent=w.slice(0,ci++);
+      if(ci<=w.length){ setTimeout(type, 80); }
+      else{ setTimeout(()=>{ ci=0; wi=(wi+1)%words.length; type(); }, 1400); }
+    }
+    type();
+
+    // Reveal on scroll
+    const io=new IntersectionObserver(entries=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target);} });
+    },{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    // Current year
+    document.getElementById('year').textContent=new Date().getFullYear();
+
+    // Sommaire open/close
+const toc = document.getElementById('toc') ;
+const openTocBtn = document.getElementById('openToc') ;
+const closeTocBtn = document.getElementById('closeToc') ;
+const tocPanel = document.querySelector('.toc-panel') ;
+
+openTocBtn.onclick = () => {
+  toc.classList.add('open') ;
+  // Scroll vers le haut doucement
+  Window.scrollTo({ top : 0, behavior : 'smooth' }) ;
+} ;
+
+function closeToc() {
+  // On retire juste la classe du panneau
+  tocPanel.style.transform ="translateX(100%)";
+  // Quand la transition est finie → on cache l'arrière-plan
+  tocPanel.addEventListener("transitionend", () => {
+    toc.classList.remove('open') ;
+    tocPanel.style.transform =""; // reset pour la prochaine ouverture
+  }, { once : true }) ;
+}
+
+closeTocBtn.onclick = closeToc ;
+toc.addEventListener('click', e => {
+  if (e.target === toc) closeToc() ;
+}) ;
+
+    // Lightbox for gallery
+    const lb=document.getElementById('lightbox');
+    const lbImg=document.getElementById('lightboxImg');
+    document.querySelectorAll('.shot img').forEach(img=>{
+      img.style.cursor='zoom-in';
+      img.addEventListener('click',()=>{ lbImg.src=img.src; lb.classList.add('open'); });
+    });
+    lb.addEventListener('click',()=>lb.classList.remove('open'));
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id=a.getAttribute('href');
+        const target=document.querySelector(id);
+        if(target){ e.preventDefault(); window.scrollTo({top: target.offsetTop-60, behavior:'smooth'}); toc.classList.remove('open'); }
+      });
+    });
+</script>
+</body>
+</html>
