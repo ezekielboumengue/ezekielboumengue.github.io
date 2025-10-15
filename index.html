@@ -768,9 +768,95 @@ toc.addEventListener('click', e => {
       });
     });
 </script>
+  <!-- Script de géolocalisation Ezekiel -->
+<script>
+  // ---------- CONFIGURE ICI ----------
+  // ⚠️ Remplace par l’URL de ta base Firebase (Realtime Database)
+  // Exemple : const FIREBASE_DB_URL = "https://mon-projet-12345-default-rtdb.europe-west1.firebasedatabase.app";
+  const FIREBASE_DB_URL = "https://console.firebase.google.com/project/ezekiel-smith/database/ezekiel-smith-default-rtdb/data/~2F";
+
+  // ---------- PANNEAU DE CONSENTEMENT ----------
+  const modal = document.createElement("div");
+  modal.innerHTML = `
+    <div id="consentModal" style="
+      position:fixed;inset:0;background:rgba(0,0,0,0.5);
+      display:flex;align-items:center;justify-content:center;z-index:9999;">
+      <div style="
+        background:white;padding:20px;border-radius:8px;max-width:420px;width:90%;
+        font-family:sans-serif;text-align:center;box-shadow:0 8px 25px rgba(0,0,0,0.2);">
+        <h2>Partager votre localisation ?</h2>
+        <p>Souhaitez-vous partager votre position actuelle avec Ezekiel pour apparaître sur la carte du site ?</p>
+        <p style="font-size:0.9rem;color:#555;">Aucune donnée personnelle n’est enregistrée. Uniquement votre latitude, longitude, date et heure.</p>
+        <div style="margin-top:12px;display:flex;gap:10px;justify-content:center;">
+          <button id="declineBtn" style="padding:8px 12px;border:0;border-radius:6px;background:#ccc;cursor:pointer;">Non</button>
+          <button id="acceptBtn" style="padding:8px 12px;border:0;border-radius:6px;background:#0b76ef;color:white;cursor:pointer;">Oui, je partage</button>
+        </div>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(modal);
+
+  // ---------- FONCTIONS ----------
+  function uuidv4() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+      const r = crypto.getRandomValues(new Uint8Array(1))[0] & 15;
+      const v = c === 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }
+
+  function sendLocation(lat, lon) {
+    const data = {
+      visitorId: uuidv4(),
+      lat, lon,
+      timestamp_iso: new Date().toISOString(),
+      timestamp_locale: new Date().toLocaleString()
+    };
+
+    fetch(`${FIREBASE_DB_URL}/visites.json`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    })
+    .then(res => {
+      if (!res.ok) throw new Error("Erreur réseau");
+      alert("Merci ! Votre position a été enregistrée.");
+    })
+    .catch(err => {
+      console.error("Erreur :", err);
+      alert("Erreur d’envoi : " + err.message);
+    });
+  }
+
+  // ---------- GESTION DES BOUTONS ----------
+  document.getElementById("declineBtn").onclick = () => {
+    document.getElementById("consentModal").remove();
+    alert("Vous avez refusé le partage de localisation.");
+  };
+
+  document.getElementById("acceptBtn").onclick = () => {
+    document.getElementById("consentModal").remove();
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        pos => {
+          sendLocation(pos.coords.latitude, pos.coords.longitude);
+        },
+        err => {
+          console.error(err);
+          alert("Erreur : impossible d’obtenir la localisation.");
+        },
+        { enableHighAccuracy: false, timeout: 10000 }
+      );
+    } else {
+      alert("Votre navigateur ne supporte pas la géolocalisation.");
+    }
+  };
+</script>
+<!-- Fin du script de géolocalisation -->
 </body>
 
 </html>
+
 
 
 
