@@ -776,40 +776,35 @@ toc.addEventListener('click', e => {
       });
     });
   </script>
- <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<div id="consent-box">
+  Nous collectons certaines données pour améliorer votre expérience.
+  <button id="accept-btn">Accepter</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/supabase.min.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  // ⚡ Initialisation Supabase
-  const supabaseUrl = "https://ekfnvkjfemdxdgpcwfco.supabase.co";
-  const supabaseKey = "sb_publishable_BGAVf2cVAxalnc7Sx6Hrqw_geqILpGq";
-  const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+  const consentBox = document.getElementById("consent-box");
+  const acceptBtn = document.getElementById("accept-btn");
 
-  // Fonction pour envoyer les données à Supabase
-  async function sendData(data) {
-    try {
-      const { error } = await supabase
-        .from("access_logs")
-        .insert([{
-          page: data.page,
-          user_agent: data.userAgent,
-          date: data.date,
-          latitude: data.latitude,
-          longitude: data.longitude
-        }]);
-      if (error) throw error;
-      console.log("✅ Données envoyées avec succès !");
-    } catch(err) {
-      console.error("❌ Erreur Supabase :", err);
-    }
+  // Initialisation Supabase correctement
+  const supabaseClient = supabase.createClient(
+    "https://ekfnvkjfemdxdgpcwfco.supabase.co",
+    "sb_publishable_BGAVf2cVAxalnc7Sx6Hrqw_geqILpGq"
+  );
+
+  function sendData(data) {
+    supabaseClient.from("access_logs").insert([data])
+      .then(({ error }) => {
+        if (error) console.error("Supabase Error:", error);
+        else console.log("✅ Données envoyées !");
+      });
   }
 
-  // Fonction pour collecter les données
   function collectData() {
-    if (localStorage.getItem("consent") !== "yes") return;
-
     const data = {
       page: window.location.pathname,
-      userAgent: navigator.userAgent,
+      user_agent: navigator.userAgent,
       date: new Date().toISOString(),
       latitude: null,
       longitude: null
@@ -829,30 +824,24 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Gestion du consentement
-  const consentBox = document.getElementById("consent-box");
-  const acceptBtn = document.getElementById("accept-btn");
-
   acceptBtn.addEventListener("click", () => {
     localStorage.setItem("consent", "yes");
     consentBox.style.display = "none";
-    collectData(); // On collecte dès que le consentement est donné
+    collectData();
   });
 
-  // Si consentement déjà donné
   if (localStorage.getItem("consent") === "yes") {
     consentBox.style.display = "none";
     collectData();
+  } else {
+    consentBox.style.display = "block";
   }
 });
 </script>
-
-     
- 
-
 </body>
 
 </html>
+
 
 
 
