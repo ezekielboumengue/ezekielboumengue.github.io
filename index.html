@@ -782,11 +782,10 @@ toc.addEventListener('click', e => {
   <button id="accept-btn">J'accepte</button>
 </div>
 
-<!-- Script Supabase + collecte de données -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  // ⚡ Initialise Supabase
+  // ⚡ Initialisation Supabase en premier
   const supabaseUrl = "https://ekfnvkjfemdxdgpcwfco.supabase.co";
   const supabaseKey = "sb_publishable_BGAVf2cVAxalnc7Sx6Hrqw_geqILpGq";
   const supabase = supabase.createClient(supabaseUrl, supabaseKey);
@@ -832,18 +831,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Fonction pour gérer le consentement
+  // Fonction pour le consentement
   function acceptConsent() {
     localStorage.setItem("consent", "yes");
     document.getElementById("consent-box").style.display = "none";
     collectData();
   }
 
-  // Attache l'événement au bouton
+  // Attacher le bouton consentement
   const btn = document.getElementById("accept-btn");
   if (btn) btn.addEventListener("click", acceptConsent);
 
-  // Collecte automatique si déjà accepté
+  // ⚡ Collecte automatique après initialisation de supabase
   if (localStorage.getItem("consent") === "yes") {
     document.getElementById("consent-box").style.display = "none";
     collectData();
@@ -855,6 +854,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </body>
 
 </html>
+
 
 
 
