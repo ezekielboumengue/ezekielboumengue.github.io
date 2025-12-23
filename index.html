@@ -787,10 +787,25 @@ toc.addEventListener('click', e => {
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  // ⚡ Initialise Supabase
+  // ⚡ Initialise Supabase en tout début
   const supabaseUrl = "https://ekfnvkjfemdxdgpcwfco.supabase.co";
   const supabaseKey = "sb_publishable_BGAVf2cVAxalnc7Sx6Hrqw_geqILpGq";
   const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+  // Fonction pour envoyer les données
+  async function sendData(data) {
+    const { error } = await supabase
+      .from("access_logs")
+      .insert([{
+        page: data.page,
+        user_agent: data.user_agent,
+        date: data.date,
+        latitude: data.latitude,
+        longitude: data.longitude
+      }]);
+    if (error) console.error("Erreur Supabase :", error);
+    else console.log("Données envoyées avec succès !");
+  }
 
   // Fonction pour collecter les données
   function collectData() {
@@ -818,24 +833,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Fonction pour envoyer les données à Supabase
-  async function sendData(data) {
-    const { error } = await supabase
-      .from("access_logs")
-      .insert([{
-        page: data.page,
-        user_agent: data.user_agent,
-        date: data.date,
-        latitude: data.latitude,
-        longitude: data.longitude
-      }]);
-    if (error) {
-      console.error("Erreur Supabase :", error);
-    } else {
-      console.log("Données envoyées avec succès !");
-    }
-  }
-
   // Fonction pour gérer le consentement
   function acceptConsent() {
     localStorage.setItem("consent", "yes");
@@ -845,22 +842,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Attache l'événement au bouton
   const btn = document.getElementById("accept-btn");
-  if (btn) {
-    btn.addEventListener("click", acceptConsent);
-  }
+  if (btn) btn.addEventListener("click", acceptConsent);
 
-  // Collecte automatiquement si déjà accepté
+  // Collecte automatique si déjà accepté
   if (localStorage.getItem("consent") === "yes") {
     document.getElementById("consent-box").style.display = "none";
     collectData();
   }
 });
 </script>
-
  
 </body>
 
 </html>
+
 
 
 
