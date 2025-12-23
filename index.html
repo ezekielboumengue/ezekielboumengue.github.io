@@ -776,10 +776,72 @@ toc.addEventListener('click', e => {
       });
     });
 </script>
+ <div id="consent-box" style="position:fixed;bottom:0;width:100%;background:#111;color:#fff;padding:15px;text-align:center;">
+  Ce site collecte des données anonymes (localisation, date, heure) à des fins statistiques.
+  <button onclick="acceptConsent()">J'accepte</button>
+</div>
+
+<script>
+function acceptConsent() {
+  localStorage.setItem("consent", "yes");
+  document.getElementById("consent-box").style.display = "none";
+  collectData();
+}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+// ⚡ Remplace "COLLE_ICI_TA_ANON_KEY" par ta clé publique Supabase
+const supabaseUrl = "https://ekfnvkjfemdxdgpcwfco.supabase.co";
+const supabaseKey = "sb_publishable_BGAVf2cVAxalnc7Sx6Hrqw_geqILpGq";
+const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+function collectData() {
+  if (localStorage.getItem("consent") !== "yes") return;
+
+  const data = {
+    page: window.location.pathname,
+    user_agent: navigator.userAgent,
+    date: new Date().toISOString(),
+    latitude: null,
+    longitude: null
+  };
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(pos => {
+      data.latitude = pos.coords.latitude;
+      data.longitude = pos.coords.longitude;
+      sendData(data);
+    }, () => sendData(data));
+  } else {
+    sendData(data);
+  }
+}
+
+async function sendData(data) {
+  const { error } = await supabase
+    .from("access_logs")
+    .insert([{
+      page: data.page,
+      user_agent: data.user_agent,
+      date: data.date,
+      latitude: data.latitude,
+      longitude: data.longitude
+    }]);
+
+  if (error) {
+    console.error("Erreur Supabase :", error);
+  } else {
+    console.log("Données envoyées avec succès !");
+  }
+}
+</script>
+
   
 </body>
 
 </html>
+
 
 
 
