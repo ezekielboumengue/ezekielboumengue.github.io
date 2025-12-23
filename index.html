@@ -776,22 +776,18 @@ toc.addEventListener('click', e => {
       });
     });
 </script>
- <div id="consent-box" style="position:fixed;bottom:0;width:100%;background:#111;color:#fff;padding:15px;text-align:center;">
+
+
+ 
+<!-- 1️⃣ Bandeau consentement -->
+<div id="consent-box" style="position:fixed;bottom:0;width:100%;background:#111;color:#fff;padding:15px;text-align:center;z-index:1000;">
   Ce site collecte des données anonymes (localisation, date, heure) à des fins statistiques.
   <button onclick="acceptConsent()">J'accepte</button>
 </div>
 
-<script>
-function acceptConsent() {
-  localStorage.setItem("consent", "yes");
-  document.getElementById("consent-box").style.display = "none";
-  collectData();
-}
-</script>
+<!-- 2️⃣ Script Supabase + collectData -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <script>
-// ⚡ Remplace "COLLE_ICI_TA_ANON_KEY" par ta clé publique Supabase
 const supabaseUrl = "https://ekfnvkjfemdxdgpcwfco.supabase.co";
 const supabaseKey = "sb_publishable_BGAVf2cVAxalnc7Sx6Hrqw_geqILpGq";
 const supabase = supabase.createClient(supabaseUrl, supabaseKey);
@@ -828,12 +824,22 @@ async function sendData(data) {
       latitude: data.latitude,
       longitude: data.longitude
     }]);
-
   if (error) {
     console.error("Erreur Supabase :", error);
   } else {
     console.log("Données envoyées avec succès !");
   }
+}
+
+function acceptConsent() {
+  localStorage.setItem("consent", "yes");
+  document.getElementById("consent-box").style.display = "none";
+  collectData();
+}
+
+// Collecte automatique si déjà accepté
+if (localStorage.getItem("consent") === "yes") {
+  collectData();
 }
 </script>
 
@@ -841,6 +847,7 @@ async function sendData(data) {
 </body>
 
 </html>
+
 
 
 
