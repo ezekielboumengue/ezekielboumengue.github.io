@@ -777,8 +777,13 @@ toc.addEventListener('click', e => {
     });
 </script>
 
-
- 
+<script>
+function acceptConsent() {
+  localStorage.setItem("consent", "yes");
+  document.getElementById("consent-box").style.display = "none";
+  collectData();
+}
+ function collectData() {
 <!-- 1️⃣ Bandeau consentement -->
 <div id="consent-box" style="position:fixed;bottom:0;width:100%;background:#111;color:#fff;padding:15px;text-align:center;z-index:1000;">
   Ce site collecte des données anonymes (localisation, date, heure) à des fins statistiques.
@@ -843,10 +848,16 @@ if (localStorage.getItem("consent") === "yes") {
 }
 </script>
 
-  
+  }
+</script>
+ <div id="consent-box">
+  Ce site collecte des données.
+  <button onclick="acceptConsent()">J'accepte</button>
+</div>
 </body>
 
 </html>
+
 
 
 
