@@ -477,7 +477,7 @@ src="https://www.googletagmanager.com/gtag/js?id=G-DE7XQ40DK0"></script>
     <!-- Biographie -->
     <section id="bio" class="container">
       <p class="kicker reveal">Biographie</p>
-      <h2 class="reveal">Mon histoire en quelques lignes</h2>
+      <h2 class="reveal">Mon mini-narratif en quelques lignes</h2>
       <div class="bio-grid">
         <article class="card reveal">
           <h3>Origines & parcours</h3>
@@ -498,7 +498,7 @@ Ma première année a été une expérience profondément enrichissante💯. J'a
         <article class="card reveal">
           <h3>Ce qui m'anime</h3>
           <p>
-            J'aime apprendre, partager et construire. Mes centres d'intérêt gravitent autour de la technologie, du design, de l'architecture, de la photographie, des sciences,et des jeux videos.
+            J'aime apprendre, partager et construire. Mes centres d'intérêt gravitent autour des sciences🧬, de la technologie🚀, de l'architecture🏛, de la photographie📸, de la musique🎶, et des jeux videos 🎮.
             Mon objectif : créer des solutions utiles, belles et accessibles.
           </p>
         </article>
@@ -686,6 +686,14 @@ Ma première année a été une expérience profondément enrichissante💯. J'a
   </span>
    </h1>   
 </p>
+   <p style="color:var(--muted); font-size:.95rem">
+   <h1 class="citation">
+  
+  <span style="font-family: 'Georgia', 'Times New Roman', serif; font-style: italic;">
+    FOLLOW A DREAM A REALITY AN AMBITION ☆
+  </span>
+   </h1>   
+   </p>
    <h2>Qui est Ezekiel Boumengue ?</h2>
    <p>Ezekiel Boumengue est un jeune étudiant en architecture 💕</p>
 
@@ -776,137 +784,5 @@ toc.addEventListener('click', e => {
       });
     });
   </script>
- <div id="live-counter">Visiteurs en ligne: <span id="count">0</span></div>
-<script>
-  // Compteur live (écoute INSERT sur visits)
-  supabase
-    .channel('visits')
-    .on('postgres_changes', 
-      { event: 'INSERT', schema: 'public', table: 'visits' }, 
-      () => {
-        supabase
-          .from('visits')
-          .select('*', { count: 'exact', head: true })
-          .gte('timestamp', new Date(Date.now() - 5*60*1000).toISOString()) // 5min
-          .then(({ count }) => {
-            document.getElementById('count').textContent = count;
-          });
-      }
-    )
-    .subscribe();
-</script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-  // Remplacez par vos vraies valeurs Supabase
-  const SUPABASE_URL = 'https://ekfnvkjfemdxdgpcwfco.supabase.co';
-  const SUPABASE_ANON_KEY = 'sb_publishable_BGAVf2cVAxalnc7Sx6Hrqw_geqILpGq';
-  
-  const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-  
-  // Créer un ID visiteur unique (localStorage pour éviter doublons)
-  function getVisitorId() {
-    let visitorId = localStorage.getItem('visitor_id');
-    if (!visitorId) {
-      visitorId = 'visitor_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
-      localStorage.setItem('visitor_id', visitorId);
-    }
-    return visitorId;
-  }
-  
-  // Obtenir localisation via IP gratuite (ip-api.com)
-  async function getLocation() {
-    try {
-      const response = await fetch('https://ip-api.com/json/?fields=status,message,country,countryCode,regionName,city,lat,lon,timezone');
-      const data = await response.json();
-      if (data.status === 'success') {
-        return {
-          country: data.country,
-          city: data.city,
-          region: data.regionName,
-          lat: data.lat,
-          lon: data.lon,
-          timezone: data.timezone
-        };
-      }
-    } catch (error) {
-      console.log('Geolocation failed:', error);
-    }
-    return null;
-  }
-  
-  // Tracker principal - s'exécute au chargement
-  async function trackVisit() {
-    const visitorId = getVisitorId();
-    const location = await getLocation();
-    const userAgent = navigator.userAgent;
-    const screenResolution = `${screen.width}x${screen.height}`;
-    const language = navigator.language;
-    const referrer = document.referrer || 'direct';
-    const pageUrl = window.location.pathname + window.location.search;
-    const timestamp = new Date().toISOString();
-    
-    const visitData = {
-      visitor_id: visitorId,
-      ip_location: location,
-      user_agent: userAgent,
-      screen_resolution: screenResolution,
-      language: language,
-      referrer: referrer,
-      page_url: pageUrl,
-      timestamp: timestamp,
-      created_at: timestamp
-    };
-    
-    // Insérer en base (créez table 'visits' avant)
-    const { error } = await supabase
-      .from('visits')
-      .insert([visitData]);
-    
-    if (error) console.error('Erreur tracking:', error);
-    else console.log('Visite trackée:', visitorId);
-  }
-  
-  // Lancer au chargement de page
-  window.addEventListener('load', trackVisit);
-</script>
 </body>
-
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
